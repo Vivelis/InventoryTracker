@@ -1,2 +1,3 @@
 # InventoryTracker
-An open-source inventory managment website.
+
+An open-source inventory management website.

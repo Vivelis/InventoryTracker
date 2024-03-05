@@ -1,0 +1,40 @@
+version: '3.9'
+
+services:
+  web:
+    container_name: inventory_tracker_web
+    build: ./web_server
+    restart: always
+    networks:
+      - back-net
+    ports:
+      - "4200:4200"
+
+  db:
+    container_name: inventory_tracker_db
+    image: postgres:alpine
+    restart: always
+    shm_size: 128mb
+    networks:
+      - back-net
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: inventory_tracker
+      POSTGRES_DB: inventory_tracker
+
+  adminer:
+    image: adminer
+    restart: always
+    networks:
+      - back-net
+    ports:
+      - 8080:8080
+
+networks:
+  back-net:
+    driver: bridge
+
+volumes:
+  db_data:
