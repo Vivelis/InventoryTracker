@@ -1,0 +1,20 @@
+# Fetching the minified node image on apline linux
+FROM node:slim
+
+# Setting up the work directory
+WORKDIR /usr/src/app
+
+# Copying all the files in our project
+COPY . /usr/src/app/
+
+# Installing angular cli
+RUN npm install -g @angular/cli
+
+# Installing dependencies
+RUN npm install
+
+# Starting the web server
+CMD ["ng", "serve", "--host", "0.0.0.0"]
+
+# Exposing server port
+EXPOSE 4200
