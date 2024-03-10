@@ -13,4 +13,3 @@ This documentation is intended for users who want to use the project.
 
 The **InventoryTracker** project is a web application that allows you to keep track of your inventory.  
 You can add, modify and delete items from your inventory.  
-
