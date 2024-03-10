@@ -17,15 +17,15 @@ This project is an open-source inventory management website.
 
 ## Installation
 
-If you want to install the project on your machine, you should start by reading the [installation documentation](https://vivelis.github.io/InventoryTracker/installation_documentation/index.md).
+If you want to install the project on your machine, you should start by reading the [installation documentation](https://vivelis.github.io/InventoryTracker/developer_documentation/#installation).
 
 ## New contributor
 
-If you never contributed to the project, you should start by reading the [developer documentation](https://vivelis.github.io/InventoryTracker/developer_documentation/index.md).
+If you never contributed to the project, you should start by reading the [developer documentation](https://vivelis.github.io/InventoryTracker/developer_documentation/).
 
 ## New user
 
-If you are a new user of the project, you should start by reading the [user documentation](https://vivelis.github.io/InventoryTracker/user_documentation/index.md).
+If you are a new user of the project, you should start by reading the [user documentation](https://vivelis.github.io/InventoryTracker/user_documentation/).
 
 ## License
 
