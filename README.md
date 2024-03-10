@@ -29,7 +29,7 @@ If you are a new user of the project, you should start by reading the [user docu
 
 ## License
 
-This project is licensed under the ``MIT`` license - see the [LICENSE.md](LICENSE.md) file for more details
+This project is licensed under the ``MIT`` license - see the [LICENSE](LICENSE) file for more details
 
 ## Contributors
 
