@@ -3,14 +3,18 @@ version: '3.9'
 services:
   front:
     container_name: inventory_tracker_front
-    build: ./front
+    build:
+      context: .
+      dockerfile: ./front/Dockerfile.dev
     restart: always
     ports:
       - "4200:4200"
 
   back:
     container_name: inventory_tracker_back
-    build: ./back
+    build:
+      context: .
+      dockerfile: ./back/Dockerfile.dev
     restart: always
     networks:
       - back-net
@@ -26,8 +30,6 @@ services:
     shm_size: 128mb
     networks:
       - back-net
-    volumes:
-      - db_data:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: password
       POSTGRES_USER: inventory_tracker
@@ -44,6 +46,3 @@ services:
 networks:
   back-net:
     driver: bridge
-
-volumes:
-  db_data:
