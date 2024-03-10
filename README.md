@@ -21,7 +21,7 @@ If you want to install the project on your machine, you should start by reading 
 
 ## New contributor
 
-If you never contributed to the project, you should start by reading the [developer documentation](dhttps://vivelis.github.io/InventoryTracker/developer_documentation/index.md).
+If you never contributed to the project, you should start by reading the [developer documentation](https://vivelis.github.io/InventoryTracker/developer_documentation/index.md).
 
 ## New user
 
