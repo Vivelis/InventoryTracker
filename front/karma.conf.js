@@ -33,7 +33,16 @@ module.exports = function (config) {
       ]
     },
     reporters: ['progress', 'kjhtml'],
-    browsers: ['Firefox'],
+    browsers: ['FirefoxHeadless'],
+    customLaunchers: {
+      FirefoxHeadless: {
+        base: 'Firefox',
+        flags: [
+          '--headless',
+          '--no-sandbox',
+        ],
+      },
+    },
     restartOnFileChange: true
   });
 };
