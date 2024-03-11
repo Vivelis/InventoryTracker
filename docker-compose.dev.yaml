@@ -9,6 +9,8 @@ services:
     restart: always
     ports:
       - "4200:4200"
+    depends_on:
+      - back
 
   back:
     container_name: inventory_tracker_back_dev
@@ -16,6 +18,12 @@ services:
       context: ./back
       dockerfile: ./Dockerfile.dev
     restart: always
+    environment:
+      NODE_ENV: development
+      DATABASE_NAME: inventory_tracker
+      DATABASE_USER: inventory_tracker
+      DATABASE_PASSWORD: password
+      DATABASE_HOST: db
     networks:
       - back-net
     ports:
@@ -31,18 +39,23 @@ services:
     networks:
       - back-net
     environment:
-      POSTGRES_PASSWORD: password
       POSTGRES_USER: inventory_tracker
+      POSTGRES_PASSWORD: password
       POSTGRES_DB: inventory_tracker
 
   adminer:
     container_name: inventory_tracker_adminer_dev
     image: adminer
     restart: always
+    environment:
+      ADMINER_DESIGN: pepa-linha-dark
+      ADMINER_DEFAULT_SERVER: db
     networks:
       - back-net
     ports:
       - 8080:8080
+    depends_on:
+      - db
 
 networks:
   back-net:
