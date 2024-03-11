@@ -1,5 +1,8 @@
-# Fetching the minified node image on apline linux
-FROM node:slim
+# Description: Dockerfile for the development environment of the front-end application.
+
+## Stage 1: Build the application
+# Using node image as base
+FROM node:slim as base
 
 # Setting up the work directory
 WORKDIR /usr/src/app
@@ -12,6 +15,25 @@ RUN npm install -g @angular/cli
 
 # Installing dependencies
 RUN npm install
+
+
+## Stage 2: Running tests
+# Using the base image
+FROM base as test
+
+# Install firefox
+RUN apt-get update && apt-get install -y firefox-esr
+
+# Install tests required packages
+RUN npm install -g karma && npm install karma-firefox-launcher --save-dev
+
+# Running tests
+RUN ng test --browsers=FirefoxHeadless --watch=false
+
+
+## Stage 3: Running the application
+# Using the base image
+FROM base as dev
 
 # Starting the web server
 CMD ["ng", "serve", "--host", "0.0.0.0"]

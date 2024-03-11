@@ -37,9 +37,12 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
           cache-dependency-path: ./front/package-lock.json
-      - run: npm install -g @angular/cli
-      - run: npm install
-      - run: npm run build --if-present
+      - name: install angular cli
+        run: npm install -g @angular/cli
+      - name: install dependencies
+        run: npm install
+      - name: build
+        run: ng build --prod
 
   test:
     name: FRONT test
@@ -62,6 +65,14 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
           cache-dependency-path: ./front/package-lock.json
-      - run: npm install -g @angular/cli
-      - run: npm install
-      - run: npm run test --if-present
+      - name: install angular cli
+        run: npm install -g @angular/cli
+      - name: install dependencies
+        run: npm install
+      - name: install firefox
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y firefox-esr
+          npm install karma-firefox-launcher --save-dev
+      - name: run tests
+        run: ng test --watch=false --browsers=FirefoxHeadless
