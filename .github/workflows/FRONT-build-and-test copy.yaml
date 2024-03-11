@@ -51,7 +51,8 @@ jobs:
       run:
         shell: bash
         working-directory: ./front/
-
+    env:
+      NODE_OPTIONS: "--max-old-space-size=8192"
     strategy:
       matrix:
         node-version: [20.x]
