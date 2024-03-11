@@ -3,14 +3,18 @@ version: '3.9'
 services:
   front:
     container_name: inventory_tracker_front
-    build: ./front
+    build:
+      context: ./front
+      dockerfile: ./Dockerfile
     restart: always
     ports:
-      - "4200:4200"
+      - "80:80"
 
   back:
     container_name: inventory_tracker_back
-    build: ./back
+    build:
+      context: ./back
+      dockerfile: ./Dockerfile
     restart: always
     networks:
       - back-net
@@ -34,6 +38,7 @@ services:
       POSTGRES_DB: inventory_tracker
 
   adminer:
+    container_name: inventory_tracker_adminer
     image: adminer
     restart: always
     networks:

@@ -2,19 +2,19 @@ version: '3.9'
 
 services:
   front:
-    container_name: inventory_tracker_front
+    container_name: inventory_tracker_front_dev
     build:
-      context: .
-      dockerfile: ./front/Dockerfile.dev
+      context: ./front
+      dockerfile: ./Dockerfile.dev
     restart: always
     ports:
       - "4200:4200"
 
   back:
-    container_name: inventory_tracker_back
+    container_name: inventory_tracker_back_dev
     build:
-      context: .
-      dockerfile: ./back/Dockerfile.dev
+      context: ./back
+      dockerfile: ./Dockerfile.dev
     restart: always
     networks:
       - back-net
@@ -24,7 +24,7 @@ services:
       - db
 
   db:
-    container_name: inventory_tracker_db
+    container_name: inventory_tracker_db_dev
     image: postgres:alpine
     restart: always
     shm_size: 128mb
@@ -36,6 +36,7 @@ services:
       POSTGRES_DB: inventory_tracker
 
   adminer:
+    container_name: inventory_tracker_adminer_dev
     image: adminer
     restart: always
     networks:

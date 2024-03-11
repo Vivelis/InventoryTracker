@@ -2,7 +2,7 @@
 FROM node:slim
 
 # Declaring env
-ENV NODE_ENV production
+ENV NODE_ENV development
 
 # Setting up the work directory
 WORKDIR /express-docker
@@ -14,7 +14,7 @@ COPY . .
 RUN npm install
 
 # Starting our application
-CMD [ "node", "index.js" ]
+CMD [ "npm", "start" ]
 
 # Exposing server port
 EXPOSE 5000

@@ -8,6 +8,9 @@ WORKDIR /tmp
 # Copying all the files in our project
 COPY . /tmp
 
+# Install apache server
+RUN apt-get update && apt-get install -y apache2
+
 # Installing angular cli
 RUN npm install -g @angular/cli
 
@@ -15,19 +18,16 @@ RUN npm install -g @angular/cli
 RUN npm install
 
 # Building the project
-RUN ng build
-
-# Move the build to the web server directory
-RUN mv /tmp/dist/${APP_NAME} /usr/src/app
+RUN ng build --output-path=/var/www/html
 
 # Removing the temporary directory
 RUN rm -rf /tmp
 
-# Setting up the work directory
-WORKDIR /usr/src/app
+# Fetching the minified apache image on apline linux
+FROM httpd:2.4
 
-# Starting the web server
-CMD ["npm", "start"]
+# Copying the build files to the apache server
+COPY --from=0 /var/www/html /usr/local/apache2/htdocs/
 
 # Exposing server port
-EXPOSE 4200
+EXPOSE 80
