@@ -42,7 +42,7 @@ jobs:
       - name: install dependencies
         run: npm install
       - name: build
-        run: ng build --prod
+        run: ng build
 
   test:
     name: FRONT test
