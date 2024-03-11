@@ -72,7 +72,7 @@ jobs:
       - name: install firefox
         run: |
           sudo apt-get update
-          sudo apt-get install -y firefox-esr
+          sudo apt-get install -y firefox
           npm install karma-firefox-launcher --save-dev
       - name: run tests
         run: ng test --watch=false --browsers=FirefoxHeadless
