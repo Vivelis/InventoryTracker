@@ -22,14 +22,8 @@ RUN npm install
 # Using the base image
 FROM base as test
 
-# Install firefox
-RUN apt-get update && apt-get install -y firefox-esr
-
-# Install tests required packages
-RUN npm install -g karma && npm install karma-firefox-launcher --save-dev
-
 # Running tests
-RUN ng test --browsers=FirefoxHeadless --watch=false
+RUN npm run test --if-present
 
 
 ## Stage 3: building the application

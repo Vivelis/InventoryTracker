@@ -11,24 +11,18 @@ WORKDIR /usr/src/app
 COPY . /usr/src/app/
 
 # Installing angular cli
-RUN npm install -g @angular/cli
+RUN npm install -g @angular/cli --save-dev
 
 # Installing dependencies
-RUN npm install
+RUN npm install --save-dev
 
 
 ## Stage 2: Running tests
 # Using the base image
 FROM base as test
 
-# Install firefox
-RUN apt-get update && apt-get install -y firefox-esr
-
-# Install tests required packages
-RUN npm install -g karma && npm install karma-firefox-launcher --save-dev
-
 # Running tests
-RUN ng test --browsers=FirefoxHeadless --watch=false
+RUN npm run test --if-present
 
 
 ## Stage 3: Running the application
