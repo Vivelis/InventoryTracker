@@ -1,5 +1,8 @@
-# Fetching the minified node image on apline linux
-FROM node:slim
+# Description: Dockerfile for the development environment of the front-end application.
+
+## Stage 1: Build the application
+# Using node image as base
+FROM node:slim as base
 
 # Setting up the work directory
 WORKDIR /usr/src/app
@@ -8,10 +11,23 @@ WORKDIR /usr/src/app
 COPY . /usr/src/app/
 
 # Installing angular cli
-RUN npm install -g @angular/cli
+RUN npm install -g @angular/cli --save-dev
 
 # Installing dependencies
-RUN npm install
+RUN npm install --save-dev
+
+
+## Stage 2: Running tests
+# Using the base image
+FROM base as test
+
+# Running tests
+RUN npm run test --if-present
+
+
+## Stage 3: Running the application
+# Using the base image
+FROM base as dev
 
 # Starting the web server
 CMD ["ng", "serve", "--host", "0.0.0.0"]
