@@ -72,7 +72,7 @@ docker run -p 3000:3000 inventory-tracker-back
 Run with docker-compose:
 
 ```bash
-docker-compose up --build
+docker compose up --build
 ```
 
 ## Built With

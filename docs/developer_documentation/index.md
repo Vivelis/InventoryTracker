@@ -54,7 +54,7 @@ Before you begin, you should have a basic understanding of the following:
 3. Deploy the project locally using Docker Compose
 
     ```bash
-    docker-compose up --build
+    docker compose up --build
     ```
 
 ### Usage
@@ -74,7 +74,7 @@ docker-compose.yml
 ├── /back
 │   ├── Dockerfile
 │   ├── Dockerfile.dev
-│   ├── app.js
+│   ├── app.ts
 ├── /front
 │   ├── Dockerfile
 │   ├── Dockerfile.dev
