@@ -61,12 +61,30 @@ npm test
 
 ## Deployment
 
+### For development
+
 Run with docker:
 
 ```bash
 cd back
-docker build -t inventory-tracker-back .
-docker run -p 3000:3000 inventory-tracker-back
+docker build --file Dockerfile.dev --tag inventory_tracker_back_dev .
+docker run --publish 3000:3000 inventory_tracker_back_dev
+```
+
+Run with docker-compose:
+
+```bash
+docker compose --file docker-compose.dev.yaml up --build
+```
+
+### For production
+
+Run with docker:
+
+```bash
+cd back
+docker build --tag inventory_tracker_back .
+docker run --publish 3000:3000 inventory_tracker_back
 ```
 
 Run with docker-compose:
