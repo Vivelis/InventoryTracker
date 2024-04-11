@@ -1,5 +1,12 @@
-var express = require('express');
-var router = express.Router();
+/**
+ * @module routes/index
+ * @fileoverview This module contains the routes for the index page.
+ * @project InventoryTracker
+ * @license MIT
+ */
+
+const express = require('express');
+const router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {

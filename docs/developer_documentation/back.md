@@ -36,20 +36,21 @@ It provides APIs for the frontend and handles database operations.
 
 This application provides the following endpoints:
 
-| Method | Endpoint                          | Description                                           |
-|--------|-----------------------------------|-------------------------------------------------------|
-| POST   | /api/v1/signup                    | Create a new user                                     |
-| POST   | /api/v1/login                     | Authenticate a user                                   |
-| GET    | /api/v1/user                      | Retrieving a user's profile (restricted to the user)  |
-| PUT    | /api/v1/user/:userId              | Updating a user's profile (restricted to the user)    |
-| GET    | /api/v1/user/all                  | Retrieving all users (restricted to admins)           |
-| PUT    | /api/v1/user/change-role/:userId  | Updating a user's role (restricted to admins)         |
-| DELETE | /api/v1/user/:userId              | Deleting a user (restricted to admins)                |
-| GET    | /api/v1/user/:userId/nodes        | Retrieving all nodes of a user                        |
-| GET    | /api/v1/node/:nodeId              | Retrieving a node                                     |
-| POST   | /api/v1/node                      | Creating a node                                       |
-| PUT    | /api/v1/node/:nodeId              | Updating a node                                       |
-| DELETE | /api/v1/node/:nodeId              | Deleting a node                                       |
+| Method | Endpoint                          | Description                                          |
+| ------ | --------------------------------- | ---------------------------------------------------- |
+| POST   | /api/v1/users/sign-up             | Create a new user                                    |
+| POST   | /api/v1/users/sign-in             | Authenticate a user                                  |
+| GET    | /api/v1/users/sign-out            | Sign out a user                                      |
+| GET    | /api/v1/users/:userId             | Retrieving a user's profile (restricted to the user) |
+| PUT    | /api/v1/users/:userId             | Updating a user's profile (restricted to the user)   |
+| GET    | /api/v1/users/all                 | Retrieving all users (restricted to admins)          |
+| PUT    | /api/v1/users/change-role/:userId | Updating a user's role (restricted to admins)        |
+| DELETE | /api/v1/users/:userId             | Deleting a user (restricted to admins)               |
+| GET    | /api/v1/users/:userId/nodes       | Retrieving all nodes of a user                       |
+| GET    | /api/v1/node/:nodeId              | Retrieving a node                                    |
+| POST   | /api/v1/node                      | Creating a node                                      |
+| PUT    | /api/v1/node/:nodeId              | Updating a node                                      |
+| DELETE | /api/v1/node/:nodeId              | Deleting a node                                      |
 
 ## Testing
 
