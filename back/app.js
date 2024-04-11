@@ -45,4 +45,14 @@ app.use(function (err, req, res, next) {
     res.render('error');
 });
 
+// Initialize the database
+const DatabaseManager = require('./common/database/database_manager')
+
+const databaseStatus = DatabaseManager.initialize();
+
+if (databaseStatus == false) {
+    console.error("Database connection failed. Exiting...");
+    process.exit(1);
+}
+
 module.exports = app;
