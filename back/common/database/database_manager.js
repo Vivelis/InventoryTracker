@@ -18,43 +18,42 @@ const DATABASE_DIALECT = process.env.DATABASE_DIALECT || 'postgres';
 const DO_RESET_DATABASE = process.env.RESET_DATABASE || false;
 
 const sequelize = new Sequelize(DATABASE_NAME, DATABASE_USER, DATABASE_PASSWORD, {
-    host: DATABASE_HOST,
-    port: DATABASE_PORT,
-    dialect: DATABASE_DIALECT
+  host: DATABASE_HOST,
+  port: DATABASE_PORT,
+  dialect: DATABASE_DIALECT,
 });
 
 function testConnection() {
-    console.log(`Checking database connection...`);
-    try {
-        sequelize.authenticate();
-        console.log('Connection has been established successfully.');
-        return true;
-    } catch (error) {
-        console.error('Unable to connect to the database:', error);
-        return false;
-    }
+  console.log('Checking database connection...');
+  try {
+    sequelize.authenticate();
+    console.log('Connection has been established successfully.');
+    return true;
+  } catch (error) {
+    console.error('Unable to connect to the database:', error);
+    return false;
+  }
 }
 
 function defineModels() {
-    UserModel.initialize(sequelize);
-    NodeModel.initialize(sequelize);
+  UserModel.initialize(sequelize);
+  NodeModel.initialize(sequelize);
 }
 
 function defineModelsRelations() {
-    const { user, node } = sequelize.models;
+  const { user, node } = sequelize.models;
 
-    user.hasMany(node, { as: "rootNodes" })
-    node.belongsTo(user, { as: "creator" });
+  user.hasMany(node, { as: 'rootNodes' });
+  node.belongsTo(user, { as: 'creator' });
 }
 
 module.exports = {
-    initialize: () => {
-        if (testConnection() == false)
-            return false;
-        defineModels();
-        defineModelsRelations();
+  initialize: () => {
+    if (testConnection() === false) { return false; }
+    defineModels();
+    defineModelsRelations();
 
-        sequelize.sync({ force: DO_RESET_DATABASE });
-        return true;
-    }
+    sequelize.sync({ force: DO_RESET_DATABASE });
+    return true;
+  },
 };

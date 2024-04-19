@@ -5,18 +5,19 @@
  * @license MIT
  */
 
-var express = require('express');
-var router = express.Router();
+const express = require('express');
 
-router.post('/sign-in', function (req, res, next) {
+const router = express.Router();
+
+router.post('/sign-in', (req, res) => {
   res.send('respond with a resource');
 });
 
-router.post('/sign-up', function (req, res, next) {
+router.post('/sign-up', (req, res) => {
   res.send('respond with a resource');
 });
 
-router.get('/sign-out', function (req, res, next) {
+router.get('/sign-out', (req, res) => {
   res.send('respond with a resource');
 });
 

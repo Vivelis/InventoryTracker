@@ -1,0 +1,45 @@
+version: '3.9'
+
+services:
+  front:
+    container_name: inventory_tracker_front_ci
+    build:
+      context: ./front
+      dockerfile: ./Dockerfile.ci
+    ports:
+      - "4200:4200"
+    depends_on:
+      - back
+
+  back:
+    container_name: inventory_tracker_back_ci
+    build:
+      context: ./back
+      dockerfile: ./Dockerfile.ci
+    environment:
+      NODE_ENV: development
+      DATABASE_NAME: inventory_tracker
+      DATABASE_USER: inventory_tracker
+      DATABASE_PASSWORD: password
+      DATABASE_HOST: db
+    networks:
+      - back-net
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+
+  db:
+    container_name: inventory_tracker_db_ci
+    image: postgres:alpine
+    shm_size: 128mb
+    networks:
+      - back-net
+    environment:
+      POSTGRES_USER: inventory_tracker
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: inventory_tracker
+
+networks:
+  back-net:
+    driver: bridge

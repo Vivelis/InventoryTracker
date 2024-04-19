@@ -6,8 +6,8 @@
  */
 
 module.exports = {
-    Roles: {
-        ADMIN: 'admin',
-        USER: 'user'
-    }
+  Roles: {
+    ADMIN: 'admin',
+    USER: 'user',
+  },
 };

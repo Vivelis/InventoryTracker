@@ -9,32 +9,32 @@ const { DataTypes } = require('sequelize');
 const { Roles } = require('../../roles');
 
 const UserModel = {
-    id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true
-    },
-    username: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true
-    },
-    password: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    role: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        defaultValue: Roles.USER
-    }
-    // rootNodes: Array<NodeModel>
-    // createdAt: Date
-    // updatedAt: Date
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+  },
+  username: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true,
+  },
+  password: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  role: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    defaultValue: Roles.USER,
+  },
+  // rootNodes: Array<NodeModel>
+  // createdAt: Date
+  // updatedAt: Date
 };
 
 module.exports = {
-    initialize: (sequelize) => {
-        this.model = sequelize.define("user", UserModel, { timestamps: true });
-    },
+  initialize: (sequelize) => {
+    this.model = sequelize.define('user', UserModel, { timestamps: true });
+  },
 };
