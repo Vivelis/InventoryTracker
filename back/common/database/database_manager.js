@@ -9,11 +9,11 @@ const { Sequelize } = require('sequelize');
 const UserModel = require('./models/user_model');
 const NodeModel = require('./models/node_model');
 
-const DATABASE_NAME = process.env.DATABASE_NAME || 'database';
-const DATABASE_USER = process.env.DATABASE_USER || 'user';
+const DATABASE_NAME = process.env.DATABASE_NAME || 'inventory_tracker';
+const DATABASE_USER = process.env.DATABASE_USER || 'inventory_tracker';
 const DATABASE_PASSWORD = process.env.DATABASE_PASSWORD || 'password';
-const DATABASE_HOST = process.env.DATABASE_HOST || 'localhost';
-const DATABASE_PORT = process.env.DATABASE_PORT || '5432';
+const DATABASE_HOST = global.__TESTCONTAINERS_POSTGRE_IP__ || process.env.DATABASE_HOST || 'localhost';
+const DATABASE_PORT = global.__TESTCONTAINERS_POSTGRE_PORT_5432__ || process.env.DATABASE_PORT || '5432';
 const DATABASE_DIALECT = process.env.DATABASE_DIALECT || 'postgres';
 const DO_RESET_DATABASE = process.env.RESET_DATABASE || false;
 
@@ -55,5 +55,5 @@ module.exports = {
 
     sequelize.sync({ force: DO_RESET_DATABASE });
     return true;
-  },
+  }
 };

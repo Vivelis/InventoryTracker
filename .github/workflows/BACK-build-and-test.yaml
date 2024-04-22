@@ -65,5 +65,9 @@ jobs:
           cache-dependency-path: ./back/package-lock.json
       - name: Install dependencies
         run: npm ci
-      - name: Test
-        run: npm run test:ci --if-present
+      - name: Unit tests
+        run: npm test
+        env: {CI: 'true'}
+      - name: Integration tests
+        run: npm run test:integration
+        env: {CI: 'true'}

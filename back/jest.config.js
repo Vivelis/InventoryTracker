@@ -1,3 +1,13 @@
 module.exports = {
-    preset: '@trendyol/jest-testcontainers'
+    moduleFileExtensions: ['js', 'json'],
+    rootDir: './',
+    testMatch: ['<rootDir>/tests/unit/**/*.test.js'],
+    collectCoverageFrom: [
+        '!tests/**/*.js',
+        '!node_modules/**',
+        '!coverage/**',
+        '!**/*.config.js',
+    ],
+    coverageDirectory: 'coverage',
+    testEnvironment: 'node',
 };

@@ -16,13 +16,8 @@
   "scripts": {
     "start": "node ./bin/www",
     "test": "cross-env NODE_ENV=test jest --testTimeout=10000",
+    "test:integration": "cd tests/integration && jest --maxConcurrency=1 --maxWorkers=1 --testTimeout=10000",
     "lint": "npx eslint ."
-  },
-  "jest": {
-    "testEnvironment": "node",
-    "coveragePathIgnorePatterns": [
-      "/node_modules/"
-    ]
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",

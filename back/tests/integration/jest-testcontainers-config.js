@@ -1,7 +1,13 @@
+/**
+ * @description Jest testcontainers configuration file
+ * @link [testcontainers](https://github.com/Trendyol/jest-testcontainers)
+ */
+
 module.exports = {
-    redis: {
+    postgre: {
         image: 'postgres',
         tag: 'alpine',
+        ports: [5432],
         env: {
             POSTGRES_USER: 'inventory_tracker',
             POSTGRES_PASSWORD: 'password',
@@ -9,7 +15,7 @@ module.exports = {
         },
         wait: {
             type: 'text',
-            text: 'Ready to accept connections'
+            text: 'server started'
         }
     },
 };
