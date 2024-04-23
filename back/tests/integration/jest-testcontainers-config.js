@@ -1,6 +1,8 @@
 /**
- * @description Jest testcontainers configuration file
+ * @fileoverview Jest testcontainers configuration file
  * @link [testcontainers](https://github.com/Trendyol/jest-testcontainers)
+ * @project InventoryTracker
+ * @license MIT
  */
 
 module.exports = {
