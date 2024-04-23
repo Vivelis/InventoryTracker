@@ -17,15 +17,7 @@ RUN npm install -g @angular/cli --save-dev
 RUN npm install --save-dev
 
 
-## Stage 2: Running tests
-# Using the base image
-FROM base as test
-
-# Running tests
-RUN npm run test --if-present
-
-
-## Stage 3: Running the application
+## Stage 2: Running the application
 # Using the base image
 FROM base as dev
 

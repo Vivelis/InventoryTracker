@@ -11,7 +11,7 @@ WORKDIR /express-docker
 COPY . .
 
 # Installing dependencies
-RUN npm install
+RUN npm install --save-dev
 
 # Starting our application
 CMD [ "npm", "start" ]
