@@ -1,5 +1,4 @@
 /**
- * @module routes/index
  * @fileoverview This module contains the routes for the index page.
  * @project InventoryTracker
  * @license MIT

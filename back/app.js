@@ -1,5 +1,4 @@
 /**
- * @module app
  * @fileoverview This module contains the main application.
  * @project InventoryTracker
  * @license MIT
