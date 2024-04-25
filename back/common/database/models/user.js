@@ -1,12 +1,11 @@
 /**
- * @module modules/users/models/user_model
  * @fileoverview This module contains the user model.
  * @project InventoryTracker
  * @license MIT
  */
 
-const { DataTypes } = require('sequelize');
-const { Roles } = require('../../roles');
+const { DataTypes, where } = require('sequelize');
+const { Roles } = require('../../config/roles');
 
 const UserModel = {
   id: {
@@ -37,4 +36,22 @@ module.exports = {
   initialize: (sequelize) => {
     this.model = sequelize.define('user', UserModel, { timestamps: true });
   },
+
+  createUser: (user) => this.model.create(user),
+
+  updateUser: (query, updatedValue) => this.model.update(updatedValue, {
+    where: query,
+  }),
+
+  deleteUser: (query) => this.model.destroy({
+    where: query,
+  }),
+
+  findUser: (query) => this.model.findOne({
+    where: query,
+  }),
+
+  findAllUsers: (query) => this.model.findAll({
+    where: query,
+  }),
 };

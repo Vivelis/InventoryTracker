@@ -1,13 +1,12 @@
 /**
- * @module common/database_management
  * @fileoverview This module contains the database management functions.
  * @project InventoryTracker
  * @license MIT
  */
 
 const { Sequelize } = require('sequelize');
-const UserModel = require('./models/user_model');
-const NodeModel = require('./models/node_model');
+const UserModel = require('./models/user');
+const NodeModel = require('./models/node');
 
 const DATABASE_NAME = process.env.DATABASE_NAME || 'inventory_tracker';
 const DATABASE_USER = process.env.DATABASE_USER || 'inventory_tracker';
@@ -55,5 +54,5 @@ module.exports = {
 
     sequelize.sync({ force: DO_RESET_DATABASE });
     return true;
-  }
+  },
 };
