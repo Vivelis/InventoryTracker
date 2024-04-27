@@ -1,5 +1,4 @@
 /**
- * @module node_model
  * @fileoverview This module contains the node model.
  * @project InventoryTracker
  * @license MIT

@@ -1,3 +1,9 @@
+/**
+ * @fileoverview Jest configuration file for integration tests.
+ * @project InventoryTracker
+ * @license MIT
+ */
+
 const { join } = require('path');
 
 module.exports = {
