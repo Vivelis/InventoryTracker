@@ -34,23 +34,22 @@ router.post(
   '/sign-up',
   [
     SchemaValidationMiddleware.verify(signUpPayload),
-    UsersController.signUp,
   ],
+  UsersController.signUp,
 );
 
-router.post(
+router.get(
   '/sign-in',
   [
     SchemaValidationMiddleware.verify(signInPayload),
-    UsersController.signIn,
+
   ],
+  UsersController.signIn,
 );
 
-// router.get(
+// router.post(
 //   '/sign-out'
-//     [
 //       UsersController.signOut
-//     ],
 // );
 
 module.exports = router;
