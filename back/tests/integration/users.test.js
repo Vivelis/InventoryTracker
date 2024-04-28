@@ -16,15 +16,19 @@ describe('User Endpoints', () => {
   beforeAll(async () => {
     // wait server to be ready
     let isServerReady = false;
+    const maxTries = 10;
 
-    while (!isServerReady) {
+    for (let tryNbr = 0; !isServerReady && tryNbr < maxTries; tryNbr++) {
       try {
         await new Promise((resolve) => setTimeout(() => resolve(), 50));
         const response = await requestWithSupertest.get('/is-server-ready');
         isServerReady = response.body.isServerReady;
       } catch (error) {
-        console.log('Server not ready yet');
+        isServerReady = false;
       }
+    }
+    if (!isServerReady) {
+      throw new Error('Server is not ready');
     }
   });
 
@@ -33,16 +37,17 @@ describe('User Endpoints', () => {
   });
 
   it('POST /api/v1/users/sign-up should return 200', async () => {
-    const response = await requestWithSupertest.post('/api/v1/users/sign-up').send({ 'username': username , 'password': password, 'email' : email})
+    const response = await requestWithSupertest
+      .post('/api/v1/users/sign-up')
+      .send({ username, password, email });
 
-    console.log("body : " + JSON.stringify(response.body));
     expect(response.statusCode).toBe(200);
+    expect(response.type).toBe('application/json');
   });
 
   it('GET /api/v1/users/sign-in should return 200', async () => {
-    const response = await requestWithSupertest.get('/api/v1/users/sign-in').auth(username, password).set('Accept', 'application/json').send({username: username, password: password});
+    const response = await requestWithSupertest.get('/api/v1/users/sign-in').auth(username, password).set('Accept', 'application/json').send({ username, password });
 
-    console.log("body : " + JSON.stringify(response.body));
     expect(response.statusCode).toBe(200);
     expect(response.type).toBe('application/json');
   });

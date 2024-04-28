@@ -37,31 +37,21 @@ module.exports = {
     this.model = sequelize.define('user', UserModel, { timestamps: true, freezeTableName: true });
   },
 
-  createUser: (user) => {
-    return this.model.create(user)
-  },
+  createUser: (user) => this.model.create(user),
 
-  updateUser: (query, updatedValue) => {
-    return this.model.update(updatedValue, {
-      where: query,
-    })
-  },
+  updateUser: (query, updatedValue) => this.model.update(updatedValue, {
+    where: query,
+  }),
 
-  deleteUser: (query) => {
-    return this.model.destroy({
-      where: query,
-    })
-  },
+  deleteUser: (query) => this.model.destroy({
+    where: query,
+  }),
 
-  findUser: (query) => {
-    return this.model.findOne({
-      where: query,
-    })
-  },
+  findUser: (query) => this.model.findOne({
+    where: query,
+  }),
 
-  findAllUsers: (query) => {
-    return this.model.findAll({
-      where: query,
-    })
-  },
+  findAllUsers: (query) => this.model.findAll({
+    where: query,
+  }),
 };

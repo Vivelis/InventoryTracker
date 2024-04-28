@@ -7,7 +7,7 @@
 const crypt = require('../../../common/cryptography/crypt');
 const jwt = require('../../../common/cryptography/token');
 
-const roles = require('../../../common/config/roles')
+const roles = require('../../../common/config/roles');
 const UserModel = require('../../../common/database/models/user');
 
 module.exports = {
@@ -28,19 +28,17 @@ module.exports = {
         Object.assign(payload, { password: encryptedPassword, role }),
       );
     } catch (error) {
-      console.error(`[error] occurred while creating a new user :\n${error}`)
+      console.error(`[error] occurred while creating a new user :\n${error}`);
       return res.status(500).json({
         status: false,
         error: {
-          message: "An error occurred while creating the user"
-        }
+          message: 'An error occurred while creating the user',
+        },
       });
     }
-    console.log("user created : " +JSON.stringify(user))
 
     const accessToken = jwt.generateAccessToken(payload.username, user.id);
 
-    console.log("token generated")
     return res.status(200).json({
       status: true,
       data: {

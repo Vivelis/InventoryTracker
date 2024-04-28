@@ -49,6 +49,8 @@ module.exports = {
 
       req.user = user;
       next();
+      return null;
     });
+    return null;
   },
 };

@@ -34,6 +34,7 @@ module.exports = {
       }
 
       next();
+      return null;
     });
   },
 };

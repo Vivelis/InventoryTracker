@@ -6,6 +6,6 @@
  */
 
 // eslint-disable-next-line node/no-missing-require
-const testcontainers_preset = require('@trendyol/jest-testcontainers/jest-preset');
+const testContainersPreset = require('@trendyol/jest-testcontainers/jest-preset');
 
-module.exports = Object.assign(testcontainers_preset);
+module.exports = Object.assign(testContainersPreset);
