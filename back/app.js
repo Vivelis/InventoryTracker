@@ -45,13 +45,15 @@ app.use((err, req, res) => {
 });
 
 // Initialize the database
+app.isServerReady = false;
 const DatabaseManager = require('./common/database/database_manager');
 
-const databaseStatus = DatabaseManager.initialize();
-
-if (databaseStatus === false) {
-  console.error('Database connection failed. Exiting...');
+DatabaseManager.initialize().then(() => {
+  console.log('Database connection successful');
+  app.isServerReady = true;
+}).catch((error) => {
+  console.error('Database connection failed:', error);
   process.exit(1);
-}
+});
 
 module.exports = app;

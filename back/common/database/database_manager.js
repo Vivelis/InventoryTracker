@@ -22,10 +22,10 @@ const sequelize = new Sequelize(DATABASE_NAME, DATABASE_USER, DATABASE_PASSWORD,
   dialect: DATABASE_DIALECT,
 });
 
-function testConnection() {
+async function testConnection() {
   console.log('Checking database connection...');
   try {
-    sequelize.authenticate();
+    await sequelize.authenticate();
     console.log('Connection has been established successfully.');
     return true;
   } catch (error) {
@@ -47,12 +47,14 @@ function defineModelsRelations() {
 }
 
 module.exports = {
-  initialize: () => {
-    if (testConnection() === false) { return false; }
+  initialize: async () => {
+    if (await testConnection() === false) {
+      throw new Error('Database connection failed');
+    }
     defineModels();
     defineModelsRelations();
 
-    sequelize.sync({ force: DO_RESET_DATABASE });
+    await sequelize.sync({ force: DO_RESET_DATABASE });
     return true;
   },
 };
