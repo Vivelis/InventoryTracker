@@ -43,6 +43,9 @@ describe('User Endpoints', () => {
 
     expect(response.statusCode).toBe(200);
     expect(response.type).toBe('application/json');
+    expect(response.body).toHaveProperty('data');
+    expect(response.body.data).toHaveProperty('token');
+    expect(response.body.data).toHaveProperty('user');
   });
 
   it('GET /api/v1/users/sign-in should return 200', async () => {
@@ -50,5 +53,8 @@ describe('User Endpoints', () => {
 
     expect(response.statusCode).toBe(200);
     expect(response.type).toBe('application/json');
+    expect(response.body).toHaveProperty('data');
+    expect(response.body.data).toHaveProperty('token');
+    expect(response.body.data).toHaveProperty('user');
   });
 });
