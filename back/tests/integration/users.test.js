@@ -18,7 +18,7 @@ describe('User Endpoints', () => {
     let isServerReady = false;
     const maxTries = 10;
 
-    for (let tryNbr = 0; !isServerReady && tryNbr < maxTries; tryNbr++) {
+    for (let tryNbr = 0; !isServerReady && tryNbr < maxTries; tryNbr += 1) {
       try {
         await new Promise((resolve) => setTimeout(() => resolve(), 50));
         const response = await requestWithSupertest.get('/is-server-ready');

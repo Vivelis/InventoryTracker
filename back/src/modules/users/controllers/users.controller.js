@@ -60,7 +60,7 @@ module.exports = {
         { username, password: encryptedPassword, role },
       );
     } catch (error) {
-      if (e instanceof Sequelize.UniqueConstraintError) {
+      if (error instanceof Sequelize.UniqueConstraintError) {
         return res.status(409).json({
           status: false,
           error: {
@@ -69,7 +69,6 @@ module.exports = {
         });
       }
 
-      console.error(`[error] occurred while creating a new user :\n${error}`);
       return res.status(500).json({
         status: false,
         error: {
