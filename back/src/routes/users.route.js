@@ -9,12 +9,12 @@ const express = require('express');
 const router = express.Router();
 
 // Middleware Imports
-const isAuthenticatedMiddleware = require('../common/middlewares/is_authenticated_middleware');
-const SchemaValidationMiddleware = require('../common/middlewares/schema_validation_middleware');
-const CheckPermissionsMiddleware = require('../common/middlewares/check_permission_middleware');
+const isAuthenticatedMiddleware = require('../common/middlewares/check_authentication.middleware');
+const SchemaValidationMiddleware = require('../common/middlewares/schema_validation.middleware');
+const CheckPermissionsMiddleware = require('../common/middlewares/check_permission.middleware');
 
 // Controller Imports
-const UsersController = require('../modules/users/controllers/users_controller');
+const UsersController = require('../modules/users/controllers/users.controller');
 
 // JSON Schema Imports for payload verification
 const updateUserPayload = require('../modules/users/schemas/update_user_payload');
@@ -26,7 +26,10 @@ const { roles } = require('../common/config/roles');
 
 router.get(
   '/',
-  [isAuthenticatedMiddleware.check],
+  [
+    isAuthenticatedMiddleware.checkCsrf,
+    isAuthenticatedMiddleware.checkSession,
+  ],
   UsersController.getActiveUser,
 );
 
@@ -42,14 +45,17 @@ router.get(
   '/sign-in',
   [
     SchemaValidationMiddleware.verify(signInPayload),
-
   ],
   UsersController.signIn,
 );
 
-// router.post(
-//   '/sign-out'
-//       UsersController.signOut
-// );
+router.put(
+  '/sign-out',
+  [
+    isAuthenticatedMiddleware.checkCsrf,
+    isAuthenticatedMiddleware.checkSession,
+  ],
+  UsersController.signOut
+);
 
 module.exports = router;

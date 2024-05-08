@@ -36,16 +36,15 @@ describe('User Endpoints', () => {
     await new Promise((resolve) => setTimeout(() => resolve(), 500)); // avoid jest open handle error
   });
 
-  it('POST /api/v1/users/sign-up should return 200', async () => {
+  it('POST /api/v1/users/sign-up should return 201', async () => {
     const response = await requestWithSupertest
       .post('/api/v1/users/sign-up')
       .send({ username, password, email });
 
-    expect(response.statusCode).toBe(200);
+    expect(response.statusCode).toBe(201);
     expect(response.type).toBe('application/json');
-    expect(response.body).toHaveProperty('data');
-    expect(response.body.data).toHaveProperty('token');
-    expect(response.body.data).toHaveProperty('user');
+    expect(response.body).toHaveProperty('csrfToken');
+    expect(response.headers['set-cookie'][0]).toMatch(/id=/);
   });
 
   it('GET /api/v1/users/sign-in should return 200', async () => {
@@ -53,8 +52,20 @@ describe('User Endpoints', () => {
 
     expect(response.statusCode).toBe(200);
     expect(response.type).toBe('application/json');
-    expect(response.body).toHaveProperty('data');
-    expect(response.body.data).toHaveProperty('token');
-    expect(response.body.data).toHaveProperty('user');
+    expect(response.body).toHaveProperty('csrfToken');
+    expect(response.headers['set-cookie'][0]).toMatch(/id=/);
+  });
+
+  it('PUT /api/v1/users/sign-out should return 200', async () => {
+    const signInResponse = await requestWithSupertest.get('/api/v1/users/sign-in').auth(username, password).set('Accept', 'application/json').send({ username, password });;
+
+    expect(signInResponse.statusCode).toBe(200);
+
+    const csrfToken = signInResponse.body.csrfToken;
+    const sessionId = signInResponse.headers['set-cookie'][0].split(';')[0].split('=')[1];
+    const signOutResponse = await requestWithSupertest.put('/api/v1/users/sign-out').set('Accept', 'application/json').set('Authorization', `Bearer ${sessionId}`).send({ csrfToken });
+
+    expect(signOutResponse.statusCode).toBe(200);
+    expect(signOutResponse.headers['set-cookie'][0]).toMatch(/id=/);
   });
 });

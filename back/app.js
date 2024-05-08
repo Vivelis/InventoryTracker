@@ -10,8 +10,8 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+const indexRouter = require('./src/routes/index.route');
+const usersRouter = require('./src/routes/users.route');
 
 const app = express();
 
@@ -46,7 +46,7 @@ app.use((err, req, res) => {
 
 // Initialize the database
 app.isServerReady = false;
-const DatabaseManager = require('./common/database/database_manager');
+const DatabaseManager = require('./src/common/database/database_manager');
 
 DatabaseManager.initialize().then(() => {
   console.log('Database connection successful');

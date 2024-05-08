@@ -40,7 +40,7 @@ This application provides the following endpoints:
 | ------ | --------------------------------- | ---------------------------------------------------- |
 | POST   | /api/v1/users/sign-up             | Create a new user                                    |
 | GET    | /api/v1/users/sign-in             | Authenticate a user                                  |
-| POST   | /api/v1/users/sign-out            | Sign out a user                                      |
+| PUT   | /api/v1/users/sign-out            | Sign out a user                                      |
 | GET    | /api/v1/users/:userId             | Retrieving a user's profile (restricted to the user) |
 | PUT    | /api/v1/users/:userId             | Updating a user's profile (restricted to the user)   |
 | GET    | /api/v1/users/all                 | Retrieving all users (restricted to admins)          |

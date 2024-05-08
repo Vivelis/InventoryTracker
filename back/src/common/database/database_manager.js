@@ -7,6 +7,7 @@
 const { Sequelize } = require('sequelize');
 const UserModel = require('./models/user');
 const NodeModel = require('./models/node');
+const SessionModel = require('./models/session');
 
 const DATABASE_NAME = process.env.DATABASE_NAME || 'inventory_tracker';
 const DATABASE_USER = process.env.DATABASE_USER || 'inventory_tracker';
@@ -37,13 +38,15 @@ async function testConnection() {
 function defineModels() {
   UserModel.initialize(sequelize);
   NodeModel.initialize(sequelize);
+  SessionModel.initialize(sequelize);
 }
 
 function defineModelsRelations() {
-  const { user, node } = sequelize.models;
+  const { user, node, session } = sequelize.models;
 
   user.hasMany(node, { as: 'rootNodes' });
   node.belongsTo(user, { as: 'creator' });
+  session.belongsTo(user, { as: 'user' });
 }
 
 module.exports = {
