@@ -55,7 +55,7 @@ router.put(
     isAuthenticatedMiddleware.checkCsrf,
     isAuthenticatedMiddleware.checkSession,
   ],
-  UsersController.signOut
+  UsersController.signOut,
 );
 
 module.exports = router;

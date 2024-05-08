@@ -4,8 +4,8 @@
  * @license MIT
  */
 
-const crypt = require('../../../common/cryptography/crypt');
 const Sequelize = require('sequelize');
+const crypt = require('../../../common/cryptography/crypt');
 
 const roles = require('../../../common/config/roles');
 const UserModel = require('../../../common/database/models/user');
@@ -57,7 +57,7 @@ module.exports = {
 
     try {
       user = await UserModel.createUser(
-        Object.assign({ username: username, password: encryptedPassword, role }),
+        { username, password: encryptedPassword, role },
       );
     } catch (error) {
       if (e instanceof Sequelize.UniqueConstraintError) {
@@ -81,12 +81,14 @@ module.exports = {
     const session = await SessionModel.createSession(user.id);
 
     res.setHeader('Authorization', `Bearer ${session.sessionId} ${session.csrfToken}`);
-    res.cookie('id', session.sessionId, { httpOnly: true, secure: true, sameSite: true, maxAge: MAX_AGE })
+    res.cookie('id', session.sessionId, {
+      httpOnly: true, secure: true, sameSite: true, maxAge: MAX_AGE,
+    });
     return res.status(201).json({
       status: true,
-        title: 'User Registration Successful',
-        detail: 'Successfully registered new user',
-        csrfToken: session.csrfToken,
+      title: 'User Registration Successful',
+      detail: 'Successfully registered new user',
+      csrfToken: session.csrfToken,
     });
   },
 
@@ -156,12 +158,14 @@ module.exports = {
     const session = await SessionModel.createSession(user.id);
 
     res.setHeader('Authorization', `Bearer ${session.sessionId} ${session.csrfToken}`);
-    res.cookie('id', session.sessionId, { httpOnly: true, secure: true, sameSite: true, maxAge: MAX_AGE })
+    res.cookie('id', session.sessionId, {
+      httpOnly: true, secure: true, sameSite: true, maxAge: MAX_AGE,
+    });
     return res.status(200).json({
       status: true,
-        title: 'User Registration Successful',
-        detail: 'Successfully registered new user',
-        csrfToken: session.csrfToken,
+      title: 'User Registration Successful',
+      detail: 'Successfully registered new user',
+      csrfToken: session.csrfToken,
     });
   },
 
@@ -173,7 +177,7 @@ module.exports = {
    * @returns {Promise<Response>} The response object.
    */
   signOut: async (req, res) => {
-    const session = req.session;
+    const { session } = req;
 
     if (!session) {
       return res.status(401).json({

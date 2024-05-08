@@ -57,11 +57,11 @@ describe('User Endpoints', () => {
   });
 
   it('PUT /api/v1/users/sign-out should return 200', async () => {
-    const signInResponse = await requestWithSupertest.get('/api/v1/users/sign-in').auth(username, password).set('Accept', 'application/json').send({ username, password });;
+    const signInResponse = await requestWithSupertest.get('/api/v1/users/sign-in').auth(username, password).set('Accept', 'application/json').send({ username, password });
 
     expect(signInResponse.statusCode).toBe(200);
 
-    const csrfToken = signInResponse.body.csrfToken;
+    const { csrfToken } = signInResponse.body;
     const sessionId = signInResponse.headers['set-cookie'][0].split(';')[0].split('=')[1];
     const signOutResponse = await requestWithSupertest.put('/api/v1/users/sign-out').set('Accept', 'application/json').set('Authorization', `Bearer ${sessionId}`).send({ csrfToken });
 

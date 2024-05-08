@@ -34,7 +34,7 @@ module.exports = {
       sessionId = req.cookies.id;
     }
 
-    if (sessionId == null || sessionId == "") {
+    if (sessionId == null || sessionId == '') {
       return res.status(401).json({
         status: false,
         error: {
