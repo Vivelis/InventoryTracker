@@ -4,7 +4,7 @@
  * @license MIT
  */
 
-const roles = require('../../../common/config/roles');
+const roles = require('../common/config/roles');
 
 module.exports = {
   type: 'object',

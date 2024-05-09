@@ -4,7 +4,7 @@
  * @license MIT
  */
 
-const UserModel = require('../database/models/user');
+const UserModel = require('../common/database/models/user');
 
 module.exports = {
   has: (role) => (req, res, next) => {

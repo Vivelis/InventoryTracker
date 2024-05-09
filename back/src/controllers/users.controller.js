@@ -5,11 +5,11 @@
  */
 
 const Sequelize = require('sequelize');
-const crypt = require('../../../common/cryptography/crypt');
+const crypt = require('../common/cryptography/crypt');
 
-const roles = require('../../../common/config/roles');
-const UserModel = require('../../../common/database/models/user');
-const SessionModel = require('../../../common/database/models/session');
+const roles = require('../common/config/roles');
+const UserModel = require('../common/database/models/user');
+const SessionModel = require('../common/database/models/session');
 
 const MAX_AGE = 3 * 24 * 60 * 60 * 1000;
 

@@ -4,7 +4,7 @@
  * @license MIT
  */
 
-const Session = require('../database/models/session');
+const Session = require('../common/database/models/session');
 
 module.exports = {
   /**

@@ -9,18 +9,18 @@ const express = require('express');
 const router = express.Router();
 
 // Middleware Imports
-const isAuthenticatedMiddleware = require('../common/middlewares/check_authentication.middleware');
-const SchemaValidationMiddleware = require('../common/middlewares/schema_validation.middleware');
-const CheckPermissionsMiddleware = require('../common/middlewares/check_permission.middleware');
+const isAuthenticatedMiddleware = require('../middlewares/check_authentication.middleware');
+const SchemaValidationMiddleware = require('../middlewares/schema_validation.middleware');
+const CheckPermissionsMiddleware = require('../middlewares/check_permission.middleware');
 
 // Controller Imports
-const UsersController = require('../modules/users/controllers/users.controller');
+const UsersController = require('../controllers/users.controller');
 
 // JSON Schema Imports for payload verification
-const updateUserPayload = require('../modules/users/schemas/update_user_payload');
-const changeRolePayload = require('../modules/users/schemas/change_role_payload');
-const signUpPayload = require('../modules/users/schemas/sign_up_payload');
-const signInPayload = require('../modules/users/schemas/sign_in_payload');
+const updateUserPayload = require('../schemas/update_user_payload');
+const changeRolePayload = require('../schemas/change_role_payload');
+const signUpPayload = require('../schemas/sign_up_payload');
+const signInPayload = require('../schemas/sign_in_payload');
 
 const { roles } = require('../common/config/roles');
 
