@@ -35,7 +35,7 @@ module.exports = {
     }
 
     if (sessionId == null || sessionId == '') {
-      return res.status(401).json({
+      return res.status(400).json({
         status: false,
         error: {
           message: 'Bad request => sessionId is missing',
@@ -72,8 +72,19 @@ module.exports = {
     const csrfHeader = req.headers['x-csrf-token'];
     const csrfCookie = req.cookies.csrfToken;
 
+    if (csrfHeader == null || csrfCookie == null) {
+      const missingField = csrfHeader == null ? 'x-csrf-token' : 'csrfToken';
+
+      return res.status(400).json({
+        status: false,
+        error: {
+          message: `Bad request => ${missingField} is missing`,
+        },
+      });
+    }
+
     if (csrfHeader !== csrfCookie) {
-      return res.status(403).json({
+      return res.status(401).json({
         status: false,
         error: {
           message: 'Forbidden => CSRF token mismatch',

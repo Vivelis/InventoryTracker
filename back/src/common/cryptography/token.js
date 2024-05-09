@@ -8,6 +8,7 @@ const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 
 const { jwtSecret, jwtExpirationInSeconds } = require('../config/token');
+
 const TOKEN_LENGTH = 64;
 
 module.exports = {
