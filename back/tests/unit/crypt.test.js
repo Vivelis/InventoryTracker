@@ -4,7 +4,7 @@
  * @license MIT
  */
 
-const crypt = require('../../common/cryptography/crypt');
+const crypt = require('../../src/common/cryptography/crypt');
 
 describe('Crypt', () => {
   it('should encrypt a password', () => {

@@ -8,12 +8,17 @@ This project is an open-source inventory management website.
 <!-- omit in toc -->
 ## Table of Contents
 
+- [Overview](#overview)
 - [Installation](#installation)
 - [New contributor](#new-contributor)
 - [New user](#new-user)
 - [License](#license)
 - [Contributors](#contributors)
 - [Acknowledgments](#acknowledgments)
+
+## Overview
+
+<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fdesign%2FBJBEM9rstxOTDzoThEuj4W%2Fstore-app%3Fnode-id%3D0%253A1%26t%3DmUqYGLMQ44O3dLFZ-1" allowfullscreen></iframe>
 
 ## Installation
 

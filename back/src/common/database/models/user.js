@@ -4,7 +4,7 @@
  * @license MIT
  */
 
-const { DataTypes, where } = require('sequelize');
+const { DataTypes } = require('sequelize');
 const { Roles } = require('../../config/roles');
 
 const UserModel = {
@@ -34,7 +34,7 @@ const UserModel = {
 
 module.exports = {
   initialize: (sequelize) => {
-    this.model = sequelize.define('user', UserModel, { timestamps: true });
+    this.model = sequelize.define('user', UserModel, { timestamps: true, freezeTableName: true });
   },
 
   createUser: (user) => this.model.create(user),
