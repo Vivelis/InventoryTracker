@@ -22,8 +22,6 @@ const changeRolePayload = require('../schemas/change_role_payload');
 const signUpPayload = require('../schemas/sign_up_payload');
 const signInPayload = require('../schemas/sign_in_payload');
 
-const { roles } = require('../common/config/roles');
-
 router.get(
   '/',
   [
