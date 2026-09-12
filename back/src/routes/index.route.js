@@ -13,4 +13,10 @@ router.get('/', (req, res) => {
   res.render('index', { title: 'Express' });
 });
 
+router.get('/is-server-ready', (req, res) => {
+  const { app } = req;
+
+  res.json({ isServerReady: app.isServerReady });
+});
+
 module.exports = router;

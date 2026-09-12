@@ -7,6 +7,7 @@
 const { Sequelize } = require('sequelize');
 const UserModel = require('./models/user');
 const NodeModel = require('./models/node');
+const SessionModel = require('./models/session');
 
 const DATABASE_NAME = process.env.DATABASE_NAME || 'inventory_tracker';
 const DATABASE_USER = process.env.DATABASE_USER || 'inventory_tracker';
@@ -22,10 +23,10 @@ const sequelize = new Sequelize(DATABASE_NAME, DATABASE_USER, DATABASE_PASSWORD,
   dialect: DATABASE_DIALECT,
 });
 
-function testConnection() {
+async function testConnection() {
   console.log('Checking database connection...');
   try {
-    sequelize.authenticate();
+    await sequelize.authenticate();
     console.log('Connection has been established successfully.');
     return true;
   } catch (error) {
@@ -37,22 +38,26 @@ function testConnection() {
 function defineModels() {
   UserModel.initialize(sequelize);
   NodeModel.initialize(sequelize);
+  SessionModel.initialize(sequelize);
 }
 
 function defineModelsRelations() {
-  const { user, node } = sequelize.models;
+  const { user, node, session } = sequelize.models;
 
   user.hasMany(node, { as: 'rootNodes' });
   node.belongsTo(user, { as: 'creator' });
+  session.belongsTo(user, { as: 'user' });
 }
 
 module.exports = {
-  initialize: () => {
-    if (testConnection() === false) { return false; }
+  initialize: async () => {
+    if (await testConnection() === false) {
+      throw new Error('Database connection failed');
+    }
     defineModels();
     defineModelsRelations();
 
-    sequelize.sync({ force: DO_RESET_DATABASE });
+    await sequelize.sync({ force: DO_RESET_DATABASE });
     return true;
   },
 };
